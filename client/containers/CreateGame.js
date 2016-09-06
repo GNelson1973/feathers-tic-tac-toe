@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import signOut from '../actions/sign-out-user'
+import createGame from '../actions/create-game'
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
@@ -26,6 +27,11 @@ class CreateGame extends Component {
     this.props.signOut()
   }
 
+  createGame(){
+    console.log(this.props)
+    this.props.createGame()
+  }
+
   render() {
     const { currentUser } = this.props
 
@@ -42,6 +48,7 @@ class CreateGame extends Component {
 
           <RaisedButton
             style={ buttonStyle }
+            onClick={ this.createGame.bind(this) }
             label='Create game'
             primary={true} />
         </div>
@@ -53,7 +60,8 @@ class CreateGame extends Component {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
+    fields: state.fields,
   }
 }
 
-export default connect(mapStateToProps, { signOut })(CreateGame);
+export default connect(mapStateToProps, { signOut, createGame })(CreateGame);

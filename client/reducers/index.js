@@ -2,12 +2,14 @@ import authenticated from './authenticated'
 import currentUser from './currentUser'
 import formErrors from './formErrors'
 import loading from './loading'
+import fields from './fields'
 
 module.exports = {
   authenticated,
   currentUser,
   formErrors,
   loading,
+  fields,
 }
 
 // {
