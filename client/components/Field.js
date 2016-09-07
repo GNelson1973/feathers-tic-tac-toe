@@ -22,11 +22,21 @@ class Field extends Component {
     tickField(index)
   }
 
+  renderValue(value) {
+    switch (value) {
+        case '1' : return <span>&#9587;</span>
+        case '2' : return <span>&#9711;</span>
+        default : return
+      }
+  }
+
   render() {
     return (
       <GridTile onClick={ this.tickMe.bind(this) } >
         <Paper style={style.paper} zDepth={1}>
-        <h1 style={ style.value }>{ this.props.value }</h1>
+          <span style={ style.value }>
+            { this.renderValue(this.props.value) }
+          </span>
         </Paper>
       </GridTile>
     )
