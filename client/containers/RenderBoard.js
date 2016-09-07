@@ -43,15 +43,15 @@ class RenderBoard extends Component {
   renderField(field, index) {
     return (
       <Field key={index}
-        tickField={ this.tickField.bind(this) }
+        tickField={ this.tryTickField.bind(this) }
         index={index} {...field} />
     )
   }
 
-  tickField(index) {
+  tryTickField(index) {
+    if (this.props.fields[index].value > 0) return
     this.props.tickField(index)
   }
-
 
   render(){
     const { currentUser } = this.props
