@@ -1,8 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+
+//actions
 import signOut from '../actions/sign-out-user'
 import createGame from '../actions/create-game'
+import tickField from '../actions/tick-field'
+
+//components
 import Field from '../components/Field'
+
+//layout
 import Paper from 'material-ui/Paper';
 import { GridList } from 'material-ui/GridList'
 import TextField from 'material-ui/TextField'
@@ -36,9 +43,15 @@ class RenderBoard extends Component {
   renderField(field, index) {
     return (
       <Field key={index}
+        tickField={ this.tickField.bind(this) }
         index={index} {...field} />
     )
   }
+
+  tickField(index) {
+    this.props.tickField(index)
+  }
+
 
   render(){
     const { currentUser } = this.props
@@ -62,4 +75,9 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {})(RenderBoard);
+RenderBoard.propTypes = {
+  fields: PropTypes.array.isRequired,
+  tickField: PropTypes.func.isRequired,
+}
+
+export default connect(mapStateToProps, { tickField })(RenderBoard);
