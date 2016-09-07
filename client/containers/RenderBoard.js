@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import signOut from '../actions/sign-out-user'
 import createGame from '../actions/create-game'
 import tickField from '../actions/tick-field'
+import gameTurn from '../actions/game-turn'
 
 //components
 import Field from '../components/Field'
@@ -51,6 +52,7 @@ class RenderBoard extends Component {
   tryTickField(index) {
     if (this.props.fields[index].value > 0) return
     this.props.tickField(index)
+    this.props.gameTurn()
   }
 
   render(){
@@ -72,12 +74,14 @@ const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
     fields: state.fields,
+    game: state.game,
   }
 }
 
 RenderBoard.propTypes = {
   fields: PropTypes.array.isRequired,
   tickField: PropTypes.func.isRequired,
+  gameTurn: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, { tickField })(RenderBoard);
+export default connect(mapStateToProps, { tickField, gameTurn })(RenderBoard);
