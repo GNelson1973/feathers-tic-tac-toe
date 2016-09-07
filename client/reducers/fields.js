@@ -9,10 +9,11 @@ export default function startBoard(state = [], { type, payload }) {
         .map((value) => ({ value: value }))
 
     case TICK_FIELD :
-      const index = payload
+      const { index, turn } = payload
+      const newValue = (turn % 2 == 0) ? '1' : '2'
 
       return state.slice(0, index)
-        .concat([Object.assign({}, state[index], { value: '1' })])
+        .concat([Object.assign({}, state[index], { value: newValue })])
         .concat(state.slice(index + 1))
 
     default :
