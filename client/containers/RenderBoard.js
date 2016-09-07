@@ -51,7 +51,7 @@ class RenderBoard extends Component {
 
   tryTickField(index) {
     if (this.props.fields[index].value > 0) return
-    this.props.tickField(index)
+    this.props.tickField(index, this.props.game.turn)
     this.props.gameTurn()
   }
 
