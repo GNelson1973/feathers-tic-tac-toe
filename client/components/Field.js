@@ -24,10 +24,10 @@ class Field extends Component {
 
   renderValue(value) {
     switch (value) {
-        case '1' : return htmlEntities(&#9587;)
-        case '2' : return htmlEntities(&#9711;)
-        default : return
-      }
+      case '1' : return <span>&#9587;</span>
+      case '2' : return <span>&#9711;</span>
+      default : return
+    }
   }
 
   render() {
