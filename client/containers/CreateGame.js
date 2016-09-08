@@ -37,7 +37,9 @@ class CreateGame extends Component {
   }
 
   createGame(){
-    this.props.createGame()
+    const player2 = this.refs.player2.getValue()
+  
+    this.props.createGame(player2)
     this.setState({
         board: true
     });
@@ -50,7 +52,7 @@ class CreateGame extends Component {
     <div>
       <h1>Hi, { currentUser.name }!</h1>
       <div>
-        <TextField type="player" ref="player" hintText="Add a player"/>
+        <TextField type="player2" ref="player2" hintText="Add a player"/>
       </div>
       <div style={ errorMargin }>
         <FlatButton
