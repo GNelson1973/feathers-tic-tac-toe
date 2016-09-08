@@ -88,7 +88,7 @@ class RenderBoard extends Component {
 
   tryTickField(index) {
     const { fields, game } = this.props
-
+    if (game.winner > 0) return
     if (fields[index].value > 0) return
     this.props.fieldTapped(index, fields, game, this.checkWinner(index, fields))
   }
