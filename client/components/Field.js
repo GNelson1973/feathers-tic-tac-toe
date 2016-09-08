@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { GridTile } from 'material-ui/GridList'
 import Paper from 'material-ui/Paper'
-import tickField from '../actions/tick-field'
 
 const style = {
   paper: {
@@ -24,18 +23,19 @@ class Field extends Component {
 
   renderValue(value) {
     switch (value) {
-      case '1' : return <span>&#9587;</span>
-      case '2' : return <span>&#9711;</span>
+      case 1 : return <span>&#9587;</span>
+      case 2 : return <span>&#9711;</span>
       default : return
     }
   }
 
   render() {
+    const { value } = this.props
     return (
       <GridTile onClick={ this.tickMe.bind(this) } >
         <Paper style={style.paper} zDepth={1}>
           <span style={ style.value }>
-            { this.renderValue(this.props.value) }
+            { this.renderValue(value) }
           </span>
         </Paper>
       </GridTile>

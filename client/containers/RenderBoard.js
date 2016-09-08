@@ -4,8 +4,7 @@ import { connect } from 'react-redux'
 //actions
 import signOut from '../actions/sign-out-user'
 import createGame from '../actions/create-game'
-import tickField from '../actions/tick-field'
-import gameTurn from '../actions/game-turn'
+import fieldTapped from '../actions/field-tapped'
 
 //components
 import Field from '../components/Field'
@@ -49,17 +48,33 @@ class RenderBoard extends Component {
     )
   }
 
+  // putWinner(fields) {
+  //   const values = fields.map(field => field.value)
+  //   console.log(values)
+  //   if (values[0] == values[3] && values[3] == values[6]) {
+  //     return values[0]
+  //   } else {
+  //     return
+  //   }
+  // }
+  //
+  // checkWinner(fields) {
+  //   const winner = this.putWinner(fields)
+  //
+  //   winner > 0 ? this.props.setWinner(winner) : null
+  // }
+
   tryTickField(index) {
-    if (this.props.fields[index].value > 0) return
-    this.props.tickField(index, this.props.game.turn)
-    this.props.gameTurn()
+    const { fields, game } = this.props
+
+    if (fields[index].value > 0) return
+    this.props.fieldTapped(index, fields, game)
   }
 
   render(){
-    const { currentUser } = this.props
-    const { fields } = this.props
+    const { currentUser, fields } = this.props
 
-    return(
+    return (
       <div>
         <h1>Let's Play, { currentUser.name }!</h1>
         <GridList cellHeight={100} cols={3} style={styles.gridList}>
@@ -80,8 +95,7 @@ const mapStateToProps = (state) => {
 
 RenderBoard.propTypes = {
   fields: PropTypes.array.isRequired,
-  tickField: PropTypes.func.isRequired,
-  gameTurn: PropTypes.func.isRequired,
+  fieldTapped: PropTypes.func.isRequired,
 }
 
-export default connect(mapStateToProps, { tickField, gameTurn })(RenderBoard);
+export default connect(mapStateToProps, { fieldTapped })(RenderBoard);
