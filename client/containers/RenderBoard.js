@@ -66,10 +66,22 @@ class RenderBoard extends Component {
     const values = newFields.map(field => field.value)
     console.log(values)
     if (values[0] > 0 && values[0] == values[3] && values[3] == values[6]) {
-      console.log('winner')
       return values[0]
+    } else if (values[1] > 0 && values[1] == values[4] && values[4] == values[7]) {
+      return values[1]
+    } else if (values[2] > 0 && values[2] == values[5] && values[5] == values[8]) {
+      return values[2]
+    } else if (values[0] > 0 && values[0] == values[1] && values[1] == values[2]) {
+      return values[0]
+    } else if (values[3] > 0 && values[3] == values[4] && values[4] == values[5]) {
+      return values[3]
+    } else if (values[6] > 0 && values[6] == values[7] && values[7] == values[8]) {
+      return values[6]
+    } else if (values[0] > 0 && values[0] == values[4] && values[4] == values[8]) {
+      return values[0]
+    } else if (values[2] > 0 && values[2] == values[4] && values[4] == values[6]) {
+      return values[2]
     } else {
-      console.log('no winner')
       return null
     }
   }
