@@ -95,10 +95,12 @@ class RenderBoard extends Component {
 
   render(){
     const { currentUser, fields } = this.props
+    const { winner } = this.props.game
 
     return (
       <div>
         <h1>Let's Play, { currentUser.name }!</h1>
+        { winner > 0 ? <p> Player {winner} wins! </p>: <p> &nbsp; </p> }
         <GridList cellHeight={100} cols={3} style={styles.gridList}>
           { fields.map(this.renderField.bind(this)) }
         </GridList>
