@@ -4,14 +4,17 @@ import Paper from 'material-ui/Paper'
 
 const style = {
   paper: {
-    height: 80,
-    width: 80,
+    height: 75,
+    width: 75,
     margin: 5,
     textAlign: 'center',
     display: 'inline-block',
   },
-  value: {
+  value1: {
     fontSize: '3rem',
+  },
+  value2: {
+    fontSize: '3.2rem',
   }
 }
 
@@ -23,8 +26,8 @@ class Field extends Component {
 
   renderValue(value) {
     switch (value) {
-      case 1 : return <span>&#9587;</span>
-      case 2 : return <span>&#9711;</span>
+      case 1 : return <span style={style.value2}>&#9587;</span>
+      case 2 : return <span style={style.value1}>&#9711;</span>
       default : return
     }
   }
@@ -34,7 +37,7 @@ class Field extends Component {
     return (
       <GridTile onClick={ this.tickMe.bind(this) } >
         <Paper style={style.paper} zDepth={1}>
-          <span style={ style.value }>
+          <span style={ style.value1 }>
             { this.renderValue(value) }
           </span>
         </Paper>
