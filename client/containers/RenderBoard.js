@@ -60,9 +60,8 @@ class RenderBoard extends Component {
 
   checkWinner(index, fields) {
     const { turn } = this.props.game
-    const newValue = (turn % 2 == 0) ? 1 : 2
     const newFields = fields.slice(0, index)
-      .concat([Object.assign({}, fields[index], { value: newValue })])
+      .concat([Object.assign({}, fields[index], { value: turn % 2 + 1 })])
       .concat(fields.slice(index + 1))
     const values = newFields.map(field => field.value)
     console.log(values)
