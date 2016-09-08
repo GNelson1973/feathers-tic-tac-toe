@@ -57,18 +57,29 @@ class RenderBoard extends Component {
   //     return
   //   }
   // }
-  //
-  // checkWinner(fields) {
-  //   const winner = this.putWinner(fields)
-  //
-  //   winner > 0 ? this.props.setWinner(winner) : null
-  // }
+
+  checkWinner(index, fields) {
+    const { turn } = this.props.game
+    const newValue = (turn % 2 == 0) ? 1 : 2
+    const newFields = fields.slice(0, index)
+      .concat([Object.assign({}, fields[index], { value: newValue })])
+      .concat(fields.slice(index + 1))
+    const values = newFields.map(field => field.value)
+    console.log(values)
+    if (values[0] > 0 && values[0] == values[3] && values[3] == values[6]) {
+      console.log('winner')
+      return values[0]
+    } else {
+      console.log('no winner')
+      return null
+    }
+  }
 
   tryTickField(index) {
     const { fields, game } = this.props
 
     if (fields[index].value > 0) return
-    this.props.fieldTapped(index, fields, game)
+    this.props.fieldTapped(index, fields, game, this.checkWinner(index, fields))
   }
 
   render(){
