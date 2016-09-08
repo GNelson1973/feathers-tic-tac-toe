@@ -48,23 +48,13 @@ class RenderBoard extends Component {
     )
   }
 
-  // putWinner(fields) {
-  //   const values = fields.map(field => field.value)
-  //   console.log(values)
-  //   if (values[0] == values[3] && values[3] == values[6]) {
-  //     return values[0]
-  //   } else {
-  //     return
-  //   }
-  // }
-
   checkWinner(index, fields) {
     const { turn } = this.props.game
     const newFields = fields.slice(0, index)
       .concat([Object.assign({}, fields[index], { value: turn % 2 + 1 })])
       .concat(fields.slice(index + 1))
     const values = newFields.map(field => field.value)
-    console.log(values)
+
     if (values[0] > 0 && values[0] == values[3] && values[3] == values[6]) {
       return values[0]
     } else if (values[1] > 0 && values[1] == values[4] && values[4] == values[7]) {
@@ -81,6 +71,8 @@ class RenderBoard extends Component {
       return values[0]
     } else if (values[2] > 0 && values[2] == values[4] && values[4] == values[6]) {
       return values[2]
+    } else if (values.filter(value => value == 0).length == 0) {
+      return 0
     } else {
       return null
     }
@@ -97,8 +89,11 @@ class RenderBoard extends Component {
     const { winner, player2 } = this.props.game
     const { currentUser } = this.props
     switch (winner) {
+      case 0 :
+        return <p>It's a tie</p>
+
       case 1 :
-        return <p> Winner: {currentUser.name}</p>
+        return <p>Winner: {currentUser.name}</p>
 
       case 2 :
         return <p>Winner: {player2}</p>
