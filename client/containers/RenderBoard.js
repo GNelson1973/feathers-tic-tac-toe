@@ -93,6 +93,18 @@ class RenderBoard extends Component {
     this.props.fieldTapped(index, fields, game, this.checkWinner(index, fields))
   }
 
+  renderWinner(winner) {
+    switch (winner) {
+      case 1 :
+        return <p> Winner: {this.props.currentUser.name}</p>
+
+      case 2 :
+        return <p>Winner: {this.props.game.player2}</p>
+
+      default : return <p>&nbsp;</p>
+    }
+  }
+
   render(){
     const { currentUser, fields } = this.props
     const { winner } = this.props.game
@@ -100,7 +112,7 @@ class RenderBoard extends Component {
     return (
       <div>
         <h1>Let's Play, { currentUser.name }!</h1>
-        { winner > 0 ? <p> Player {winner} wins! </p>: <p> &nbsp; </p> }
+        { this.renderWinner(winner) }
         <GridList cellHeight={100} cols={3} style={styles.gridList}>
           { fields.map(this.renderField.bind(this)) }
         </GridList>
