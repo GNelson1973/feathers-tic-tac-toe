@@ -1,17 +1,17 @@
 import authenticated from './authenticated'
 import currentUser from './currentUser'
+import fields from './fields'
 import formErrors from './formErrors'
 import game from './game'
 import loading from './loading'
-import fields from './fields'
 
 module.exports = {
   authenticated,
   currentUser,
+  fields,
   formErrors,
   game,
   loading,
-  fields,
 }
 
 // {
