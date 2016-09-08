@@ -9,6 +9,8 @@ export default function updateGame(state = { turn: 0, winner: null }, { type, pa
       const { turn } = state
       const nextTurn = turn + 1
       const { winner } = payload
+      winner > 0 ? console.log('winner') : console.log('no winner')
+
       return (Object.assign({}, state, { turn: nextTurn, winner: winner }))
 
     default :
